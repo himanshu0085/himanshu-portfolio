@@ -31,8 +31,8 @@ const projects = [
     tags: [
       ["Terraform", "https://cdn.simpleicons.org/terraform/ffffff"],
       ["Ansible", "https://cdn.simpleicons.org/ansible/ffffff"],
-      ["AWS", "https://cdn.simpleicons.org/amazonwebservices/ffffff"],
-      ["Azure", "https://cdn.simpleicons.org/microsoftazure/ffffff"],
+      ["AWS", "https://api.iconify.design/logos:amazon-aws.svg"],
+      ["Azure", "https://api.iconify.design/logos:microsoft-azure.svg"],
       ["Kafka", "https://cdn.simpleicons.org/apachekafka/ffffff"],
       ["Linux", "https://cdn.simpleicons.org/linux/ffffff"],
     ],
