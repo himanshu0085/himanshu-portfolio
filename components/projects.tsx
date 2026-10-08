@@ -30,6 +30,7 @@ const projects = [
     description:
       "End-to-end Kafka infrastructure automation combining Terraform provisioning and Ansible-based configuration for repeatable deployments across cloud and Linux environments.",
     tags: ["Terraform", "Ansible", "AWS", "Azure", "Kafka", "Linux"],
+    logos: [["https://cdn.simpleicons.org/terraform/ffffff", "Terraform"], ["https://cdn.simpleicons.org/ansible/ffffff", "Ansible"], ["https://cdn.simpleicons.org/amazonaws/ffffff", "AWS"], ["https://cdn.simpleicons.org/microsoftazure/ffffff", "Azure"], ["https://cdn.simpleicons.org/apachekafka/ffffff", "Kafka"], ["https://cdn.simpleicons.org/linux/ffffff", "Linux"]],
     url: "https://github.com/himanshu085/kafka_dynamic",
     label: "Infrastructure + Automation",
     visual: "cloud",
@@ -269,7 +270,7 @@ export function Projects() {
                   </a>
                 </div>
                 <p className="mt-3 leading-7 text-slate-500">{project.description}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
+                <div className="mt-5 grid grid-cols-3 gap-2 sm:grid-cols-6">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
