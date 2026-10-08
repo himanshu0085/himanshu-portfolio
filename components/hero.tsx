@@ -24,8 +24,8 @@ function PipelineStrip() {
 
 function DevOpsLifecycleLogo() {
   return (
-    <div className="relative w-full max-w-[420px] select-none motion-safe:animate-float-soft">
-      <div className="absolute -inset-8 rounded-[3rem] bg-cyan-400/10 blur-3xl" />
+    <div className="relative w-full select-none motion-safe:animate-float-soft">
+      <div className="absolute -inset-6 rounded-[2rem] bg-cyan-400/10 blur-3xl" />
       <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 shadow-2xl shadow-cyan-950/30">
         <img
           src="https://assets.techrepublic.com/uploads/2023/03/Figure.B.DevOps-1024x614.jpeg"
@@ -61,12 +61,9 @@ export function Hero() {
       <div className="absolute inset-0 grid-pattern opacity-50" />
       <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
       <div aria-hidden="true" className="pointer-events-none absolute bottom-20 right-[6%] h-64 w-64 rounded-full bg-blue-500/10 blur-3xl motion-safe:animate-float-soft" />
-      <div className="pointer-events-none absolute right-[2%] top-24 z-10 hidden w-[34vw] max-w-[460px] lg:block">
-        <DevOpsLifecycleLogo />
-      </div>
 
       <div className="section-shell relative py-20">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.25fr_.75fr]">
+        <div className="grid items-start gap-10 lg:grid-cols-[1.25fr_.75fr] lg:gap-14">
           <div className="motion-safe:animate-reveal-up">
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/5 px-3 py-1.5 text-xs font-medium text-cyan-300">
               <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,.9)] motion-safe:animate-pulse" />
@@ -97,13 +94,16 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-sm motion-safe:animate-reveal-up [animation-delay:150ms]">
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-cyan-400/20 to-blue-500/10 blur-2xl" />
-            <div className="glass relative overflow-hidden rounded-[2rem] p-3">
-              <img src="/images/himanshu-new.png" alt="Himanshu Parashar" className="aspect-square w-full rounded-[1.4rem] object-cover" />
-              <div className="absolute bottom-7 left-7 right-7 flex items-center justify-between rounded-xl border border-white/10 bg-[#070a0f]/80 px-4 py-3 backdrop-blur-xl">
-                <div><p className="text-xs text-slate-500">Focus</p><p className="text-sm font-medium text-white">Cloud • DevOps • Kubernetes</p></div>
-                <Sparkles className="text-cyan-400 motion-safe:animate-pulse" size={19} />
+          <div className="relative mx-auto flex w-full max-w-sm flex-col items-center motion-safe:animate-reveal-up [animation-delay:150ms]">
+            <DevOpsLifecycleLogo />
+            <div className="relative mt-5 w-full">
+              <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-cyan-400/20 to-blue-500/10 blur-2xl" />
+              <div className="glass relative overflow-hidden rounded-[2rem] p-3">
+                <img src="/images/himanshu-new.png" alt="Himanshu Parashar" className="aspect-square w-full rounded-[1.4rem] object-cover" />
+                <div className="absolute bottom-7 left-7 right-7 flex items-center justify-between rounded-xl border border-white/10 bg-[#070a0f]/80 px-4 py-3 backdrop-blur-xl">
+                  <div><p className="text-xs text-slate-500">Focus</p><p className="text-sm font-medium text-white">Cloud • DevOps • Kubernetes</p></div>
+                  <Sparkles className="text-cyan-400 motion-safe:animate-pulse" size={19} />
+                </div>
               </div>
             </div>
           </div>
