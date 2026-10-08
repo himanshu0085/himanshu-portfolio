@@ -21,10 +21,10 @@ export function Contact() {
         template_params: { from_name: formData.name, from_email: formData.email, subject: formData.subject, message: formData.message, to_name: "Himanshu Parashar", to_email: "himanshuparashar085@gmail.com", reply_to: formData.email },
       })})
       if (!response.ok) throw new Error("Failed to send")
-      setSubmitStatus({ type: "success", message: "Message sent. I&apos;ll get back to you soon." })
+      setSubmitStatus({ type: "success", message: "Message sent. I’ll get back to you soon." })
       setFormData({ name: "", email: "", subject: "", message: "" })
     } catch {
-      setSubmitStatus({ type: "error", message: "Couldn&apos;t send the message. Please email me directly." })
+      setSubmitStatus({ type: "error", message: "Couldn’t send the message. Please email me directly." })
     } finally { setIsSubmitting(false) }
   }
 
