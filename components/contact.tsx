@@ -17,37 +17,25 @@ export function Contact() {
     setSubmitStatus({ type: null, message: "" })
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/himanshuparashar085@gmail.com", {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          _replyto: formData.email,
-          _subject: `Portfolio contact: ${formData.subject}`,
-          message: formData.message,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       })
 
       const result = await response.json().catch(() => null)
 
-      if (!response.ok || result?.success === false) {
-        throw new Error(result?.message || "Failed to send")
+      if (!response.ok) {
+        throw new Error(result?.error || "Failed to send")
       }
 
-      setSubmitStatus({
-        type: "success",
-        message: "Message sent. If this is your first submission, check your inbox for the activation email.",
-      })
+      setSubmitStatus({ type: "success", message: "Message sent. I’ll get back to you soon." })
       setFormData({ name: "", email: "", subject: "", message: "" })
     } catch (error) {
       console.error("Contact form submission failed:", error)
       setSubmitStatus({
         type: "error",
-        message: "Couldn’t send the message. Please try again or email me directly.",
+        message: error instanceof Error ? error.message : "Couldn’t send the message. Please try again.",
       })
     } finally {
       setIsSubmitting(false)
