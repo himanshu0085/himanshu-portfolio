@@ -28,7 +28,7 @@ export function Hero() {
         <div>
           <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/5 px-3 py-1.5 text-xs font-medium text-cyan-300"><span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,.9)]" />Available for DevOps / Cloud opportunities</div>
           <p className="mb-4 font-mono text-sm text-cyan-400">01 / DEVOPS ENGINEER</p>
-          <h1 className="max-w-4xl text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">Building reliable infrastructure for <span className="bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text text-transparent">cloud-native systems.</span></h1>
+          <h1 className="max-w-4xl text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">Automating software delivery through <span className="bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text text-transparent">reliable CI/CD pipelines and cloud-native infrastructure.</span></h1>
           <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-400">I design and automate cloud infrastructure, CI/CD pipelines and Kubernetes workloads with a focus on repeatability, observability and operational reliability.</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg" className="rounded-full bg-cyan-400 px-6 text-slate-950 hover:bg-cyan-300"><a href="#contact"><Mail className="mr-2 h-4 w-4" />Let&apos;s talk</a></Button>
