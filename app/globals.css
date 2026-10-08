@@ -69,3 +69,19 @@
     background-size: 42px 42px;
   }
 }
+
+/* Accessibility: users who prefer reduced motion get a calm, static page. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
