@@ -27,7 +27,7 @@ const projects = [
   },
   {
     title: "Kafka Infrastructure & Automation",
-    description: "Automating software delivery through reliable CI/CD pipelines and cloud-native infrastructure.",
+    description: "End-to-end Kafka infrastructure automation combining Terraform provisioning and Ansible configuration across cloud and Linux environments.",
     tags: [
       ["Terraform", "https://cdn.simpleicons.org/terraform/ffffff"],
       ["Ansible", "https://cdn.simpleicons.org/ansible/ffffff"],
