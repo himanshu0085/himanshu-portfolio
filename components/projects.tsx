@@ -27,11 +27,11 @@ const projects = [
   },
   {
     title: "Kafka Infrastructure & Automation",
-    description: "End-to-end Kafka infrastructure automation combining Terraform provisioning and Ansible configuration across cloud and Linux environments.",
+    description: "Automating software delivery through reliable CI/CD pipelines and cloud-native infrastructure.",
     tags: [
       ["Terraform", "https://cdn.simpleicons.org/terraform/ffffff"],
       ["Ansible", "https://cdn.simpleicons.org/ansible/ffffff"],
-      ["AWS", "https://api.iconify.design/logos:amazon-aws.svg"],
+      ["AWS", "devops"],
       ["Azure", "https://api.iconify.design/logos:microsoft-azure.svg"],
       ["Kafka", "https://cdn.simpleicons.org/apachekafka/ffffff"],
       ["Linux", "https://cdn.simpleicons.org/linux/ffffff"],
@@ -41,6 +41,18 @@ const projects = [
     visual: "cloud",
   },
 ]
+
+function AnimatedDevOpsMark({ compact = false }: { compact?: boolean }) {
+  return (
+    <span className={compact ? "relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-lg bg-cyan-400/[0.08]" : "relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg border border-cyan-400/15 bg-cyan-400/[0.06]"}>
+      <span className="absolute inset-y-1/2 left-0 w-full -translate-y-1/2 bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent blur-[1px] animate-[pulse_2s_ease-in-out_infinite]" />
+      <span className="absolute left-1 top-1/2 h-px w-7 -translate-y-1/2 bg-cyan-300/30" />
+      <span className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(103,232,249,.9)]" />
+      <span className="absolute left-2 top-2 h-1.5 w-1.5 rounded-full border border-cyan-300/70" />
+      <span className="absolute bottom-2 right-2 h-1.5 w-1.5 rounded-full border border-cyan-300/70" />
+    </span>
+  )
+}
 
 function Node({ icon: Icon, title, subtitle }: { icon: typeof GitBranch; title: string; subtitle?: string }) {
   return (
@@ -139,7 +151,7 @@ function ProjectVisual({ type }: { type: string }) {
           <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-cyan-300/80">infrastructure automation</p>
           <p className="mt-1 text-xs text-slate-500">Terraform → Ansible → Kafka</p>
         </div>
-        <Cloud size={20} className="text-sky-300/70" />
+        <AnimatedDevOpsMark />
       </div>
       <div className="grid grid-cols-3 gap-3">
         <Node icon={Layers3} title="Terraform" subtitle="provision" />
@@ -191,7 +203,7 @@ export function Projects() {
                     {project.tags.map(([name, src]) => (
                       <div key={name} className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.025] px-3 py-2.5">
                         <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/[0.06]">
-                          <img src={src} alt={name} className="h-4.5 w-4.5 object-contain" />
+                          {src === "devops" ? <AnimatedDevOpsMark compact /> : <img src={src} alt={name} className="h-4.5 w-4.5 object-contain" />}
                         </span>
                         <span className="text-xs font-medium text-slate-300">{name}</span>
                       </div>
