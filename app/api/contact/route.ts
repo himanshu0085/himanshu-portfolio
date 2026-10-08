@@ -13,38 +13,41 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Invalid email address." }, { status: 400 })
     }
 
-    const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+    const response = await fetch("https://formsubmit.co/ajax/himanshuparashar085@gmail.com", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
       body: JSON.stringify({
-        service_id: "service_ism8rey",
-        template_id: "template_209ty7g",
-        user_id: "Stx8-lGdQ8nvv1tet",
-        template_params: {
-          from_name: name,
-          from_email: email,
-          subject,
-          message,
-          to_name: "Himanshu Parashar",
-          to_email: "himanshuparashar085@gmail.com",
-          reply_to: email,
-        },
+        name,
+        email,
+        _replyto: email,
+        _subject: `Portfolio contact: ${subject}`,
+        message,
+        _captcha: "true",
       }),
     })
 
-    const responseText = await response.text()
+    const result = await response.json().catch(() => null)
 
-    if (!response.ok) {
-      console.error("EmailJS rejected contact form:", response.status, responseText)
+    if (!response.ok || result?.success === false) {
+      console.error("FormSubmit rejected contact form:", response.status, result)
       return NextResponse.json(
-        { error: "Email service rejected the message. Please try again later." },
+        { error: "Email delivery failed. Please try again or email me directly." },
         { status: 502 },
       )
     }
 
-    return NextResponse.json({ message: "Message sent successfully!" }, { status: 200 })
+    return NextResponse.json({
+      message: "Message sent successfully.",
+      activationRequired: false,
+    }, { status: 200 })
   } catch (error) {
     console.error("Contact form error:", error)
-    return NextResponse.json({ error: "Failed to send message. Please try again." }, { status: 500 })
+    return NextResponse.json(
+      { error: "Unable to send the message right now. Please email me directly." },
+      { status: 500 },
+    )
   }
 }
