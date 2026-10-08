@@ -18,6 +18,14 @@ const projects = [
     visual: "ai-review",
   },
   {
+    title: "NetBird VPN Infrastructure",
+    description: "Self-hosted zero-trust VPN on Azure using NetBird, Docker Compose, Nginx reverse proxy, HTTPS/TLS, and Microsoft Entra ID SSO with validated client connectivity.",
+    tags: ["NetBird", "Azure", "Docker Compose", "Nginx", "Entra ID"],
+    url: "https://github.com/himanshu0085/netbird_setup",
+    label: "Networking + Security",
+    visual: "netbird",
+  },
+  {
     title: "Kafka Infrastructure & Automation",
     description: "End-to-end Kafka infrastructure automation combining Terraform provisioning and Ansible configuration across cloud and Linux environments.",
     tags: [
@@ -71,6 +79,32 @@ function ProjectVisual({ type }: { type: string }) {
           <Node icon={Server} title="Build Service" subtitle="PR comment" />
         </div>
         <p className="mt-3 text-center font-mono text-[9px] text-slate-500">shared YAML template · diff validation · cost controls</p>
+      </div>
+    )
+  }
+
+  if (type === "netbird") {
+    return (
+      <div className="flex h-full w-full flex-col justify-center px-7 sm:px-10">
+        <div className="mb-5 flex items-start justify-between gap-4">
+          <div>
+            <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-cyan-300/80">secure network access</p>
+            <p className="mt-1 text-xs text-slate-500">Azure VM → NetBird → private connectivity</p>
+          </div>
+          <Network size={20} className="text-cyan-300/70" />
+        </div>
+        <div className="grid grid-cols-3 items-center gap-2">
+          <Node icon={Cloud} title="Azure VM" subtitle="Ubuntu 24.04" />
+          <div className="flex justify-center text-cyan-400/70"><ArrowRight size={17} /></div>
+          <Node icon={ShieldCheck} title="NetBird" subtitle="zero-trust VPN" />
+        </div>
+        <div className="mx-auto my-2 h-5 w-px bg-cyan-400/30" />
+        <div className="grid grid-cols-3 items-center gap-2">
+          <Node icon={Server} title="Nginx" subtitle="TLS + proxy" />
+          <div className="flex justify-center text-cyan-400/70"><ArrowRight size={17} /></div>
+          <Node icon={Bot} title="Entra ID" subtitle="SSO" />
+        </div>
+        <p className="mt-3 text-center font-mono text-[9px] text-slate-500">Docker Compose · gRPC · WebSocket · STUN</p>
       </div>
     )
   }
