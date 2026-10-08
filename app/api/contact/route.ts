@@ -8,18 +8,15 @@ async function hasMailDomain(domain: string) {
     const records = await dns.resolveMx(domain)
     return records.length > 0
   } catch {
-    try {
-      const [ipv4, ipv6] = await Promise.allSettled([
-        dns.resolve4(domain),
-        dns.resolve6(domain),
-      ])
-      return (
-        (ipv4.status === "fulfilled" && ipv4.value.length > 0) ||
-        (ipv6.status === "fulfilled" && ipv6.value.length > 0)
-      )
-    } catch {
-      return false
-    }
+    const [ipv4, ipv6] = await Promise.allSettled([
+      dns.resolve4(domain),
+      dns.resolve6(domain),
+    ])
+
+    return (
+      (ipv4.status === "fulfilled" && ipv4.value.length > 0) ||
+      (ipv6.status === "fulfilled" && ipv6.value.length > 0)
+    )
   }
 }
 
@@ -39,6 +36,7 @@ export async function POST(request: NextRequest) {
     }
 
     const domain = normalizedEmail.split("@")[1]
+
     if (!domain || !(await hasMailDomain(domain))) {
       return NextResponse.json(
         { error: "That email domain does not appear to accept email. Please check the address." },
@@ -46,37 +44,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const response = await fetch("https://formsubmit.co/ajax/himanshuparashar085@gmail.com", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email: normalizedEmail,
-        _replyto: normalizedEmail,
-        _subject: `Portfolio contact: ${subject}`,
-        message,
-        _captcha: "true",
-      }),
-    })
-
-    const result = await response.json().catch(() => null)
-
-    if (!response.ok || result?.success === false) {
-      console.error("FormSubmit rejected contact form:", response.status, result)
-      return NextResponse.json(
-        { error: "Email delivery failed. Please try again or email me directly." },
-        { status: 502 },
-      )
-    }
-
-    return NextResponse.json({ message: "Message sent successfully." }, { status: 200 })
+    return NextResponse.json({ valid: true }, { status: 200 })
   } catch (error) {
-    console.error("Contact form error:", error)
+    console.error("Contact validation error:", error)
     return NextResponse.json(
-      { error: "Unable to send the message right now. Please try again." },
+      { error: "Unable to validate the email address right now. Please try again." },
       { status: 500 },
     )
   }

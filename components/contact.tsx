@@ -4,6 +4,8 @@ import type React from "react"
 import { useState } from "react"
 import { ArrowUpRight, Mail, MapPin, Send } from "lucide-react"
 
+const FORM_SUBMIT_URL = "https://formsubmit.co/ajax/himanshuparashar085@gmail.com"
+
 export function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -17,16 +19,39 @@ export function Contact() {
     setSubmitStatus({ type: null, message: "" })
 
     try {
-      const response = await fetch("/api/contact", {
+      const validationResponse = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
 
+      const validationResult = await validationResponse.json().catch(() => null)
+
+      if (!validationResponse.ok) {
+        throw new Error(validationResult?.error || "Please enter a valid email address.")
+      }
+
+      const response = await fetch(FORM_SUBMIT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email.trim().toLowerCase(),
+          _replyto: formData.email.trim().toLowerCase(),
+          _subject: `Portfolio contact: ${formData.subject}`,
+          message: formData.message,
+          _honey: "",
+        }),
+      })
+
       const result = await response.json().catch(() => null)
 
-      if (!response.ok) {
-        throw new Error(result?.error || "Failed to send")
+      if (!response.ok || result?.success === false) {
+        console.error("FormSubmit rejected contact form:", response.status, result)
+        throw new Error("Email delivery failed. Please try again or email me directly.")
       }
 
       setSubmitStatus({ type: "success", message: "Message sent. I’ll get back to you soon." })
