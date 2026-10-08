@@ -19,6 +19,42 @@ const projects = [
   {
     title: "CI/CD Automation",
     description:
+      "A reusable enterprise CI/CD approach using Jenkins, GitHub Actions, and Azure DevOps, with shared pipeline libraries and standardized build, test, security, and deployment workflows.",
+    tags: ["Jenkins", "GitHub Actions", "Azure DevOps", "Shared Libraries"],
+    url: "https://github.com/himanshu085/ot-microservices",
+    label: "CI/CD",
+    visual: "cicd",
+  },
+  {
+    title: "Kafka Infrastructure & Automation",
+    description:
+      "End-to-end Kafka infrastructure automation combining Terraform provisioning and Ansible-based configuration for repeatable deployments across cloud and Linux environments.",
+    tags: ["Terraform", "Ansible", "AWS", "Azure", "Kafka", "Linux"],
+    url: "https://github.com/himanshu085/kafka_dynamic",
+    label: "Infrastructure + Automation",
+    visual: "cloud",
+  },
+]mport {
+  ArrowRight,
+  ArrowUpRight,
+  Boxes,
+  Cloud,
+  Code2,
+  Database,
+  GitBranch,
+  Github,
+  Layers3,
+  Network,
+  Play,
+  Server,
+  Terminal,
+  Workflow,
+} from "lucide-react"
+
+const projects = [
+  {
+    title: "CI/CD Automation",
+    description:
       "A production-oriented delivery workflow for automated build, test and deployment of a Java microservices project.",
     tags: ["Jenkins", "GitHub Actions", "Azure DevOps", "Shared Libraries"],
     url: "https://github.com/himanshu085/ot-microservices",
