@@ -22,45 +22,16 @@ function PipelineStrip() {
   )
 }
 
-/** Compact DevOps infinity mark inspired by the lifecycle graphic shared for the hero. */
-function DevOpsLifecycleMark() {
+function DevOpsLifecycleLogo() {
   return (
-    <div aria-hidden="true" className="relative h-40 w-64 select-none motion-safe:animate-float-soft">
-      <div className="absolute inset-3 rounded-full bg-cyan-400/10 blur-2xl" />
-      <svg viewBox="0 0 320 190" className="relative h-full w-full overflow-visible">
-        <defs>
-          <linearGradient id="devops-left" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#22d3ee" />
-            <stop offset="100%" stopColor="#10b981" />
-          </linearGradient>
-          <linearGradient id="devops-right" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#84cc16" />
-            <stop offset="100%" stopColor="#ef4444" />
-          </linearGradient>
-          <filter id="devops-glow">
-            <feGaussianBlur stdDeviation="4" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-
-        <path d="M160 95 C122 40 65 36 38 67 C10 99 35 146 82 148 C121 150 143 123 160 95 C177 67 199 40 238 42 C285 44 310 91 282 123 C255 154 198 150 160 95 Z" fill="none" stroke="url(#devops-left)" strokeWidth="22" strokeLinecap="round" filter="url(#devops-glow)" />
-        <path d="M160 95 C198 150 255 154 282 123 C310 91 285 44 238 42 C199 40 177 67 160 95 C143 123 121 150 82 148 C35 146 10 99 38 67 C65 36 122 40 160 95 Z" fill="none" stroke="url(#devops-right)" strokeWidth="22" strokeLinecap="round" opacity=".9" />
-        <circle cx="92" cy="95" r="35" fill="#070a0f" stroke="rgba(255,255,255,.12)" strokeWidth="1.5" />
-        <circle cx="228" cy="95" r="35" fill="#070a0f" stroke="rgba(255,255,255,.12)" strokeWidth="1.5" />
-        <text x="92" y="101" textAnchor="middle" fill="white" fontSize="18" fontWeight="700" fontFamily="sans-serif">Dev</text>
-        <text x="228" y="101" textAnchor="middle" fill="white" fontSize="18" fontWeight="700" fontFamily="sans-serif">Ops</text>
-        <g fill="#67e8f9">
-          <circle cx="44" cy="58" r="3" />
-          <circle cx="72" cy="143" r="3" />
-          <circle cx="248" cy="44" r="3" />
-          <circle cx="282" cy="131" r="3" />
-        </g>
-      </svg>
-      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 rounded-full border border-cyan-400/20 bg-[#070a0f]/80 px-3 py-1 font-mono text-[9px] uppercase tracking-[0.22em] text-cyan-300 backdrop-blur-md">
-        continuous delivery
+    <div className="relative w-full max-w-[420px] select-none motion-safe:animate-float-soft">
+      <div className="absolute -inset-8 rounded-[3rem] bg-cyan-400/10 blur-3xl" />
+      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 shadow-2xl shadow-cyan-950/30">
+        <img
+          src="https://assets.techrepublic.com/uploads/2023/03/Figure.B.DevOps-1024x614.jpeg"
+          alt="DevOps lifecycle infinity loop showing Code, Plan, Build, Test, Release, Deploy, Operate and Monitor"
+          className="block h-auto w-full object-contain"
+        />
       </div>
     </div>
   )
@@ -90,8 +61,8 @@ export function Hero() {
       <div className="absolute inset-0 grid-pattern opacity-50" />
       <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
       <div aria-hidden="true" className="pointer-events-none absolute bottom-20 right-[6%] h-64 w-64 rounded-full bg-blue-500/10 blur-3xl motion-safe:animate-float-soft" />
-      <div className="pointer-events-none absolute right-[4%] top-24 z-10 hidden lg:block">
-        <DevOpsLifecycleMark />
+      <div className="pointer-events-none absolute right-[2%] top-24 z-10 hidden w-[34vw] max-w-[460px] lg:block">
+        <DevOpsLifecycleLogo />
       </div>
 
       <div className="section-shell relative py-20">
