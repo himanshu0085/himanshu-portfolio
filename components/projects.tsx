@@ -42,15 +42,46 @@ const projects = [
   },
 ]
 
+/**
+ * Animated DevOps mark.
+ * The outer box is fixed-size and static (no layout shift, still clips overflow). Only the inner
+ * layer rotates: a continuous, linear 0deg -> 360deg loop around its own centre
+ * (`animate-spin-slow` in tailwind.config.ts, 7s). It starts automatically, needs no hover/click,
+ * and is disabled for `prefers-reduced-motion` users via `motion-safe:` (plus the global rule).
+ * The existing glow sweep (`pulse`) and the centre-dot glow are preserved.
+ */
 function AnimatedDevOpsMark({ compact = false }: { compact?: boolean }) {
   return (
-    <span className={compact ? "relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-lg bg-cyan-400/[0.08]" : "relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg border border-cyan-400/15 bg-cyan-400/[0.06]"}>
-      <span className="absolute inset-y-1/2 left-0 w-full -translate-y-1/2 bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent blur-[1px] animate-[pulse_2s_ease-in-out_infinite]" />
-      <span className="absolute left-1 top-1/2 h-px w-7 -translate-y-1/2 bg-cyan-300/30" />
+    <span
+      aria-hidden="true"
+      className={compact ? "relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-lg bg-cyan-400/[0.08]" : "relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg border border-cyan-400/15 bg-cyan-400/[0.06]"}
+    >
+      <span className="absolute inset-0 transform-gpu will-change-transform motion-safe:animate-spin-slow">
+        <span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent blur-[1px] animate-[pulse_2s_ease-in-out_infinite]" />
+        <span className="absolute inset-x-1 top-1/2 h-px -translate-y-1/2 bg-cyan-300/30" />
+        <span className="absolute left-2 top-2 h-1.5 w-1.5 rounded-full border border-cyan-300/70" />
+        <span className="absolute bottom-2 right-2 h-1.5 w-1.5 rounded-full border border-cyan-300/70" />
+      </span>
       <span className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(103,232,249,.9)]" />
-      <span className="absolute left-2 top-2 h-1.5 w-1.5 rounded-full border border-cyan-300/70" />
-      <span className="absolute bottom-2 right-2 h-1.5 w-1.5 rounded-full border border-cyan-300/70" />
     </span>
+  )
+}
+
+/** Horizontal pipeline arrow with a soft directional nudge. `delay` staggers neighbours. */
+function FlowArrow({ delay = 0 }: { delay?: number }) {
+  return (
+    <div className="flex justify-center text-cyan-400/70" aria-hidden="true">
+      <ArrowRight size={17} className="motion-safe:animate-nudge-x" style={{ animationDelay: `${delay}ms` }} />
+    </div>
+  )
+}
+
+/** Vertical connector with a small packet travelling down it. */
+function FlowDown({ delay = 0 }: { delay?: number }) {
+  return (
+    <div className="relative mx-auto my-2 h-5 w-px overflow-hidden bg-cyan-400/30" aria-hidden="true">
+      <span className="absolute inset-x-0 top-0 h-1/4 bg-cyan-300 shadow-[0_0_6px_rgba(103,232,249,.9)] motion-safe:animate-flow-down" style={{ animationDelay: `${delay}ms` }} />
+    </div>
   )
 }
 
@@ -81,13 +112,13 @@ function ProjectVisual({ type }: { type: string }) {
         </div>
         <div className="grid grid-cols-3 items-center gap-2">
           <Node icon={GitBranch} title="Pull Request" subtitle="Azure DevOps" />
-          <div className="flex justify-center text-cyan-400/70"><ArrowRight size={17} /></div>
+          <FlowArrow />
           <Node icon={Bot} title="GPT-4o mini" subtitle="AI review" />
         </div>
-        <div className="mx-auto my-2 h-5 w-px bg-cyan-400/30" />
+        <FlowDown />
         <div className="grid grid-cols-3 items-center gap-2">
           <Node icon={ShieldCheck} title="Critical / High" subtitle="security + correctness" />
-          <div className="flex justify-center text-cyan-400/70"><ArrowRight size={17} /></div>
+          <FlowArrow delay={600} />
           <Node icon={Server} title="Build Service" subtitle="PR comment" />
         </div>
         <p className="mt-3 text-center font-mono text-[9px] text-slate-500">shared YAML template · diff validation · cost controls</p>
@@ -107,13 +138,13 @@ function ProjectVisual({ type }: { type: string }) {
         </div>
         <div className="grid grid-cols-3 items-center gap-2">
           <Node icon={Cloud} title="Azure VM" subtitle="Ubuntu 24.04" />
-          <div className="flex justify-center text-cyan-400/70"><ArrowRight size={17} /></div>
+          <FlowArrow />
           <Node icon={ShieldCheck} title="NetBird" subtitle="zero-trust VPN" />
         </div>
-        <div className="mx-auto my-2 h-5 w-px bg-cyan-400/30" />
+        <FlowDown />
         <div className="grid grid-cols-3 items-center gap-2">
           <Node icon={Server} title="Nginx" subtitle="TLS + proxy" />
-          <div className="flex justify-center text-cyan-400/70"><ArrowRight size={17} /></div>
+          <FlowArrow delay={600} />
           <Node icon={Bot} title="Entra ID" subtitle="SSO" />
         </div>
         <p className="mt-3 text-center font-mono text-[9px] text-slate-500">Docker Compose · gRPC · WebSocket · STUN</p>
@@ -130,13 +161,13 @@ function ProjectVisual({ type }: { type: string }) {
         </div>
         <div className="grid grid-cols-3 items-center gap-2">
           <Node icon={GitBranch} title="Git" subtitle="source" />
-          <div className="flex justify-center text-cyan-400/70"><ArrowRight size={17} /></div>
+          <FlowArrow />
           <Node icon={Workflow} title="Jenkins" subtitle="pipeline" />
         </div>
-        <div className="mx-auto my-2 h-5 w-px bg-cyan-400/30" />
+        <FlowDown />
         <div className="grid grid-cols-3 items-center gap-2">
           <Node icon={Code2} title="Shared Library" subtitle="reusable steps" />
-          <div className="flex justify-center text-cyan-400/70"><ArrowRight size={17} /></div>
+          <FlowArrow delay={600} />
           <Node icon={Server} title="Azure DevOps" subtitle="delivery" />
         </div>
         <p className="mt-3 text-center font-mono text-[9px] text-slate-500">GitHub Actions · security · deployment</p>
@@ -161,7 +192,7 @@ function ProjectVisual({ type }: { type: string }) {
       <div className="relative my-3 h-7">
         <div className="absolute left-[16%] right-[16%] top-1/2 border-t border-dashed border-cyan-400/20" />
         <div className="absolute left-1/2 top-0 h-full -translate-x-1/2 border-l border-dashed border-cyan-400/20" />
-        <div className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300" />
+        <div className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(103,232,249,.8)] motion-safe:animate-pulse" />
       </div>
       <div className="mx-auto w-2/3"><Node icon={Network} title="AWS / Azure" subtitle="cloud infrastructure" /></div>
     </div>
@@ -184,7 +215,7 @@ export function Projects() {
 
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           {projects.map((project) => (
-            <article key={project.title} className="group overflow-hidden rounded-2xl border border-white/10 bg-[#0b1018] transition hover:-translate-y-1 hover:border-cyan-400/25">
+            <article key={project.title} className="group overflow-hidden rounded-2xl border border-white/10 bg-[#0b1018] transition duration-300 hover:-translate-y-1 hover:border-cyan-400/25 hover:shadow-[0_18px_50px_-22px_rgba(34,211,238,.35)] motion-reduce:hover:translate-y-0">
               <div className="relative aspect-[16/8.5] overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_50%_45%,rgba(34,211,238,.12),transparent_48%),linear-gradient(135deg,#101824,#080b11)]">
                 <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "linear-gradient(rgba(148,163,184,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.07) 1px,transparent 1px)", backgroundSize: "32px 32px" }} />
                 <div className="relative z-10 h-full"><ProjectVisual type={project.visual} /></div>
@@ -194,7 +225,7 @@ export function Projects() {
               <div className="p-6">
                 <div className="flex items-start justify-between gap-4">
                   <h3 className="text-xl font-semibold text-white">{project.title}</h3>
-                  <a href={project.url} target="_blank" rel="noreferrer" aria-label={"Open " + project.title + " on GitHub"} className="rounded-lg border border-white/10 p-2 text-slate-400 hover:border-cyan-400/30 hover:text-cyan-300"><Github size={17} /></a>
+                  <a href={project.url} target="_blank" rel="noreferrer" aria-label={"Open " + project.title + " on GitHub"} className="rounded-lg border border-white/10 p-2 text-slate-400 transition duration-200 hover:border-cyan-400/30 hover:text-cyan-300 group-hover:border-cyan-400/20"><Github size={17} /></a>
                 </div>
                 <p className="mt-3 leading-7 text-slate-500">{project.description}</p>
 
@@ -211,7 +242,7 @@ export function Projects() {
                   </div>
                 ) : (
                   <div className="mt-5 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => <span key={tag} className="rounded-full border border-cyan-400/10 bg-cyan-400/5 px-3 py-1 text-xs text-cyan-300">{tag}</span>)}
+                    {project.tags.map((tag) => <span key={String(tag)} className="rounded-full border border-cyan-400/10 bg-cyan-400/5 px-3 py-1 text-xs text-cyan-300">{tag}</span>)}
                   </div>
                 )}
               </div>
