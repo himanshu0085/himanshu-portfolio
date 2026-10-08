@@ -166,7 +166,6 @@ export function Hero() {
               </div>
             </div>
           </div>
-        </div>
 
         <PipelineStrip />
         <a href="#about" className="mt-10 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-slate-500 hover:text-cyan-300">
