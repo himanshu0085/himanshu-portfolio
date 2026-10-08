@@ -17,10 +17,10 @@ import {
 
 const projects = [
   {
-    title: "OT-Microservices CI/CD",
+    title: "CI/CD Automation",
     description:
       "A production-oriented delivery workflow for automated build, test and deployment of a Java microservices project.",
-    tags: ["Jenkins", "GitHub Actions", "Azure DevOps", "Maven"],
+    tags: ["Jenkins", "GitHub Actions", "Azure DevOps", "Shared Libraries"],
     url: "https://github.com/himanshu085/ot-microservices",
     label: "CI/CD",
     visual: "cicd",
@@ -97,7 +97,7 @@ function ProjectVisual({ type }: { type: string }) {
         </div>
         <div className="mx-auto my-2 flex h-5 w-px bg-gradient-to-b from-cyan-400/50 to-blue-500/20" />
         <div className="grid grid-cols-3 items-center gap-2">
-          <Node icon={Code2} title="Maven" subtitle="build + test" />
+          <Node icon={Code2} title="Shared Library" subtitle="reusable steps" />
           <div className="flex items-center justify-center text-cyan-400/70"><ArrowRight size={17} /></div>
           <Node icon={Server} title="Azure DevOps" subtitle="delivery" />
         </div>
