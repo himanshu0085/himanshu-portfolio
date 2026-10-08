@@ -13,7 +13,7 @@ const projects = [
     title: "AI-Assisted PR Review Automation",
     description: "Automated pull-request reviews on Azure DevOps using Azure AI Foundry and GPT-4o mini, with a reusable pipeline template, diff-size controls, focused security/correctness checks, and bot-posted findings.",
     tags: ["Azure AI Foundry", "GPT-4o mini", "Azure DevOps", "Shared Pipeline"],
-    url: "",
+    url: "https://github.com/himanshu0085/ai_pr_review_solution",
     label: "AI + DevOps",
     visual: "ai-review",
   },
