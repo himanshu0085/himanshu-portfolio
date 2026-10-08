@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight, Cloud, Code2, Database, GitBranch, Github, Layers3, Network, Server, Terminal, Workflow } from "lucide-react"
+import { ArrowRight, ArrowUpRight, Bot, Cloud, Code2, Database, GitBranch, Github, Layers3, Network, Server, ShieldCheck, Sparkles, Terminal, Workflow } from "lucide-react"
 
 const projects = [
   {
@@ -8,6 +8,14 @@ const projects = [
     url: "https://github.com/himanshu085/ot-microservices",
     label: "CI/CD",
     visual: "cicd",
+  },
+  {
+    title: "AI-Assisted PR Review Automation",
+    description: "Automated pull-request reviews on Azure DevOps using Azure AI Foundry and GPT-4o mini, with a reusable pipeline template, diff-size controls, focused security/correctness checks, and bot-posted findings.",
+    tags: ["Azure AI Foundry", "GPT-4o mini", "Azure DevOps", "Shared Pipeline"],
+    url: "",
+    label: "AI + DevOps",
+    visual: "ai-review",
   },
   {
     title: "Kafka Infrastructure & Automation",
@@ -41,6 +49,32 @@ function Node({ icon: Icon, title, subtitle }: { icon: typeof GitBranch; title: 
 }
 
 function ProjectVisual({ type }: { type: string }) {
+  if (type === "ai-review") {
+    return (
+      <div className="flex h-full w-full flex-col justify-center px-7 sm:px-10">
+        <div className="mb-5 flex items-start justify-between gap-4">
+          <div>
+            <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-cyan-300/80">automated code intelligence</p>
+            <p className="mt-1 text-xs text-slate-500">PR → AI review → actionable findings</p>
+          </div>
+          <Sparkles size={20} className="text-cyan-300/70" />
+        </div>
+        <div className="grid grid-cols-3 items-center gap-2">
+          <Node icon={GitBranch} title="Pull Request" subtitle="Azure DevOps" />
+          <div className="flex justify-center text-cyan-400/70"><ArrowRight size={17} /></div>
+          <Node icon={Bot} title="GPT-4o mini" subtitle="AI review" />
+        </div>
+        <div className="mx-auto my-2 h-5 w-px bg-cyan-400/30" />
+        <div className="grid grid-cols-3 items-center gap-2">
+          <Node icon={ShieldCheck} title="Critical / High" subtitle="security + correctness" />
+          <div className="flex justify-center text-cyan-400/70"><ArrowRight size={17} /></div>
+          <Node icon={Server} title="Build Service" subtitle="PR comment" />
+        </div>
+        <p className="mt-3 text-center font-mono text-[9px] text-slate-500">shared YAML template · diff validation · cost controls</p>
+      </div>
+    )
+  }
+
   if (type === "cicd") {
     return (
       <div className="flex h-full w-full flex-col justify-center px-7 sm:px-10">
