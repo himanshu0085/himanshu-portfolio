@@ -1,53 +1,12 @@
+import { Cloud, Container, GitBranch, ShieldCheck } from "lucide-react"
+
+const cards = [
+  { icon: Cloud, title: "Cloud Infrastructure", text: "AWS environments, networking fundamentals and infrastructure designed for repeatable delivery." },
+  { icon: GitBranch, title: "CI/CD Automation", text: "Jenkins pipelines, Maven builds and reusable automation that reduces manual release work." },
+  { icon: Container, title: "Containers & Kubernetes", text: "Dockerized workloads, Kubernetes deployments, scaling, RBAC and production delivery patterns." },
+  { icon: ShieldCheck, title: "IaC & Reliability", text: "Terraform, Terragrunt, Ansible and observability practices for safer infrastructure changes." },
+]
+
 export function About() {
-  return (
-    <section id="about" className="py-20 px-4 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-center text-white mb-12 drop-shadow-lg">About Me</h2>
-
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <img
-              src="/images/himanshu-new.png"
-              alt="Himanshu Parashar"
-              className="rounded-lg shadow-2xl w-full object-cover border-4 border-white"
-            />
-          </div>
-
-          <div className="space-y-6">
-            <p className="text-lg text-green-50 leading-relaxed">
-              Hello! I'm Himanshu, I am a DevOps Enthusiast and Engineer with hands-on experience in cloud technologies,
-              automation, and CI/CD practices. I specialize in tools like AWS, Terraform, Jenkins, Docker, Kubernetes,
-              and Ansible to drive efficient and reliable infrastructure management.
-            </p>
-
-            <p className="text-lg text-green-50 leading-relaxed">
-              I have practical experience in automating infrastructure with Terraform, setting up CI/CD pipelines using
-              Jenkins, and orchestrating containers with Docker and Kubernetes. With a keen interest in DevOps
-              methodologies, I am committed to improving operational workflows and delivering scalable infrastructure
-              solutions.
-            </p>
-
-            <div className="grid grid-cols-2 gap-4 pt-4">
-              <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4 border border-white/30">
-                <h3 className="font-semibold text-yellow-300 mb-2">Cloud Infrastructure</h3>
-                <p className="text-green-100">AWS | Terraform | Jenkins</p>
-              </div>
-              <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4 border border-white/30">
-                <h3 className="font-semibold text-yellow-300 mb-2">Container Orchestration</h3>
-                <p className="text-green-100">Docker | Kubernetes | Ansible</p>
-              </div>
-              <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4 border border-white/30">
-                <h3 className="font-semibold text-yellow-300 mb-2">CI/CD & Automation</h3>
-                <p className="text-green-100">CI/CD Pipelines | Infrastructure as Code</p>
-              </div>
-              <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4 border border-white/30">
-                <h3 className="font-semibold text-yellow-300 mb-2">Monitoring & Tools</h3>
-                <p className="text-green-100">Git | Maven | Prometheus | Grafana</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
+  return <section id="about" className="border-y border-white/5 bg-white/[0.015] py-24"><div className="section-shell"><div className="grid gap-14 lg:grid-cols-[.8fr_1.2fr]"><div><p className="font-mono text-xs uppercase tracking-[0.25em] text-cyan-400">02 / ABOUT</p><h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">Infrastructure should be boring—in the best way.</h2></div><div><p className="text-lg leading-8 text-slate-400">I&apos;m a DevOps Engineer with hands-on experience across cloud infrastructure, automation and delivery platforms. My work sits between development and operations: turning deployment workflows into repeatable systems and making infrastructure easier to operate.</p><p className="mt-5 text-lg leading-8 text-slate-400">My core toolkit spans AWS, Terraform, Terragrunt, Jenkins, Docker, Kubernetes, Ansible, Prometheus and Grafana, with practical exposure to production-grade microservices environments.</p><div className="mt-10 grid gap-3 sm:grid-cols-2">{cards.map(({ icon: Icon, title, text }) => <div key={title} className="glass rounded-2xl p-5 transition hover:-translate-y-0.5 hover:border-cyan-400/20"><Icon size={20} className="text-cyan-400" /><h3 className="mt-4 font-semibold text-white">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-500">{text}</p></div>)}</div></div></div></div></section>
 }
