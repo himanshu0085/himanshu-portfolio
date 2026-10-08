@@ -15,17 +15,28 @@ export function Contact() {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus({ type: null, message: "" })
+
     try {
-      const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
-        service_id: "service_ism8rey", template_id: "template_209ty7g", user_id: "Stx8-lGdQ8nvv1tet",
-        template_params: { from_name: formData.name, from_email: formData.email, subject: formData.subject, message: formData.message, to_name: "Himanshu Parashar", to_email: "himanshuparashar085@gmail.com", reply_to: formData.email },
-      })})
-      if (!response.ok) throw new Error("Failed to send")
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send")
+      }
+
       setSubmitStatus({ type: "success", message: "Message sent. I’ll get back to you soon." })
       setFormData({ name: "", email: "", subject: "", message: "" })
-    } catch {
+    } catch (error) {
+      console.error("Contact form submission failed:", error)
       setSubmitStatus({ type: "error", message: "Couldn’t send the message. Please email me directly." })
-    } finally { setIsSubmitting(false) }
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const fieldClass = "w-full rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3 text-sm text-white outline-none placeholder:text-slate-600 transition focus:border-cyan-400/50 focus:ring-2 focus:ring-cyan-400/10"
