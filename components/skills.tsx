@@ -1,115 +1,15 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Cloud, Server, Settings, Database, Monitor, GitBranch } from "lucide-react"
+import { Activity, Boxes, Cloud, Database, GitBranch, Settings2 } from "lucide-react"
+
+const groups = [
+  { icon: Cloud, title: "Cloud", items: ["AWS", "EC2", "IAM", "S3", "CloudWatch", "DynamoDB"] },
+  { icon: Settings2, title: "Infrastructure as Code", items: ["Terraform", "Terragrunt", "Ansible"] },
+  { icon: Boxes, title: "Containers & Orchestration", items: ["Docker", "Kubernetes", "Helm", "RBAC", "HPA"] },
+  { icon: GitBranch, title: "CI/CD & Developer Tools", items: ["Jenkins", "Git", "Maven", "Groovy", "Job DSL"] },
+  { icon: Activity, title: "Observability", items: ["Prometheus", "Grafana", "VictoriaMetrics", "CloudWatch"] },
+  { icon: Database, title: "Data & Messaging", items: ["Apache Kafka", "Redis", "PostgreSQL", "ScyllaDB"] },
+]
+const certifications = ["Microsoft Technology Associate — Database Administration Fundamentals", "DevOps Ninja — DevOps Practices", "Microsoft Certified IT Professional — Database Administrator"]
 
 export function Skills() {
-  const skills = [
-    {
-      icon: Cloud,
-      title: "Cloud Infrastructure",
-      description: "AWS, CloudWatch, Infrastructure as Code",
-      level: 90,
-      color: "from-blue-500 to-cyan-500",
-      bgColor: "bg-gradient-to-br from-blue-100 to-cyan-100",
-    },
-    {
-      icon: Settings,
-      title: "CI/CD & Automation",
-      description: "Jenkins, Git, Maven, CI/CD Pipelines",
-      level: 95,
-      color: "from-green-500 to-emerald-500",
-      bgColor: "bg-gradient-to-br from-green-100 to-emerald-100",
-    },
-    {
-      icon: Server,
-      title: "Container Orchestration",
-      description: "Docker, Kubernetes, Container Management",
-      level: 85,
-      color: "from-purple-500 to-pink-500",
-      bgColor: "bg-gradient-to-br from-purple-100 to-pink-100",
-    },
-    {
-      icon: Database,
-      title: "Infrastructure as Code",
-      description: "Terraform, Ansible, Configuration Management",
-      level: 88,
-      color: "from-orange-500 to-red-500",
-      bgColor: "bg-gradient-to-br from-orange-100 to-red-100",
-    },
-    {
-      icon: Monitor,
-      title: "Monitoring & Observability",
-      description: "Prometheus, Grafana, AWS CloudWatch",
-      level: 80,
-      color: "from-indigo-500 to-purple-500",
-      bgColor: "bg-gradient-to-br from-indigo-100 to-purple-100",
-    },
-    {
-      icon: GitBranch,
-      title: "Version Control & Scripting",
-      description: "Git, Bash Scripting, Linux, Apache Kafka",
-      level: 90,
-      color: "from-teal-500 to-green-500",
-      bgColor: "bg-gradient-to-br from-teal-100 to-green-100",
-    },
-  ]
-
-  return (
-    <section id="skills" className="py-20 px-4 bg-gradient-to-br from-yellow-400 via-red-500 to-pink-500">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center text-white mb-12 drop-shadow-lg">Skills & Expertise</h2>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skills.map((skill, index) => (
-            <Card
-              key={index}
-              className={`hover:shadow-2xl transition-all duration-300 ${skill.bgColor} border-2 border-white/50 hover:scale-105`}
-            >
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  <skill.icon className="h-10 w-10 text-gray-800 mr-3" />
-                  <h3 className="text-xl font-bold text-gray-800">{skill.title}</h3>
-                </div>
-
-                <p className="text-gray-700 mb-4 font-medium">{skill.description}</p>
-
-                <div className="w-full bg-white/50 rounded-full h-4 mb-2">
-                  <div
-                    className={`bg-gradient-to-r ${skill.color} h-4 rounded-full transition-all duration-1000 shadow-lg`}
-                    style={{ width: `${skill.level}%` }}
-                  />
-                </div>
-
-                <p className="text-sm text-gray-700 font-semibold">{skill.level}% Proficiency</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Certifications Section */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold text-center text-white mb-8 drop-shadow-lg">Certifications</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="text-center bg-gradient-to-br from-blue-100 to-purple-100 border-2 border-white/50 hover:scale-105 transition-transform">
-              <CardContent className="p-6">
-                <h4 className="font-bold text-gray-800 mb-2">Microsoft Technology Associate</h4>
-                <p className="text-gray-700 text-sm font-medium">Database Administration Fundamentals (MTA)</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center bg-gradient-to-br from-green-100 to-teal-100 border-2 border-white/50 hover:scale-105 transition-transform">
-              <CardContent className="p-6">
-                <h4 className="font-bold text-gray-800 mb-2">DevOps Ninja</h4>
-                <p className="text-gray-700 text-sm font-medium">Advanced DevOps Practices</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center bg-gradient-to-br from-pink-100 to-red-100 border-2 border-white/50 hover:scale-105 transition-transform">
-              <CardContent className="p-6">
-                <h4 className="font-bold text-gray-800 mb-2">Microsoft Certified IT Professional</h4>
-                <p className="text-gray-700 text-sm font-medium">Database Administrator</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
+  return <section id="skills" className="py-24"><div className="section-shell"><div className="max-w-2xl"><p className="font-mono text-xs uppercase tracking-[0.25em] text-cyan-400">03 / TOOLKIT</p><h2 className="mt-4 text-3xl font-bold text-white sm:text-4xl">Tools I use to ship and operate.</h2><p className="mt-4 text-slate-500">No arbitrary proficiency percentages—just the technologies I work with and the areas where I build.</p></div><div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{groups.map(({ icon: Icon, title, items }) => <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.025] p-6"><Icon className="text-cyan-400" size={21}/><h3 className="mt-5 font-semibold text-white">{title}</h3><div className="mt-4 flex flex-wrap gap-2">{items.map(item => <span key={item} className="rounded-lg border border-white/10 bg-black/20 px-2.5 py-1.5 font-mono text-xs text-slate-400">{item}</span>)}</div></div>)}</div><div className="mt-16"><p className="font-mono text-xs uppercase tracking-[0.25em] text-slate-500">CERTIFICATIONS</p><div className="mt-5 grid gap-3 md:grid-cols-3">{certifications.map(cert => <div key={cert} className="rounded-xl border border-white/10 bg-white/[0.02] p-4 text-sm leading-6 text-slate-400">{cert}</div>)}</div></div></div></section>
 }
