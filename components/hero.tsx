@@ -153,7 +153,8 @@ export function Hero() {
             </div>
 
             <div className="relative mx-auto flex w-full max-w-sm flex-col items-center motion-safe:animate-reveal-up [animation-delay:150ms]">
-              <div className="relative w-full">
+              <DevOpsLifecycleLogo />
+              <div className="relative mt-5 w-full">
                 <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-cyan-400/20 to-blue-500/10 blur-2xl" />
                 <div className="glass relative overflow-hidden rounded-[2rem] p-3">
                   <img src="/images/himanshu-new.png" alt="Himanshu Parashar" className="aspect-square w-full rounded-[1.4rem] object-cover" />
