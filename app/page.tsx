@@ -20,9 +20,6 @@ export default function Portfolio() {
       <footer className="border-t border-white/10 bg-[#070a0f] px-6 py-8">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Himanshu Parashar. Built for the cloud.</p>
-          <a className="transition hover:text-cyan-300" href="https://github.com/himanshu0085/himanshu-portfolio" target="_blank" rel="noreferrer">
-            Source on GitHub
-          </a>
         </div>
       </footer>
     </main>
