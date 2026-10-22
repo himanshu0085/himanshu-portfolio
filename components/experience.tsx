@@ -9,6 +9,7 @@ const experiences = [
     description:
       "Working across Azure and AWS client environments, delivering production-grade cloud infrastructure, Kubernetes platforms, CI/CD automation, security, observability, and reliable release workflows.",
     projects: [
+      "AD Ports Group — Azure-Based Platform",
       "Fincart — Azure-based Fintech Platform",
       "PineLabs — AWS-based Payment Solutions",
       "Maino.ai — AWS-based AI Platform",
