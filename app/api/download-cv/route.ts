@@ -1,19 +1,24 @@
 export async function GET() {
   try {
-    const pdfUrl = "https://blobs.vusercontent.net/blob/Resume-qc3QqchvzWwA0xM1VvKvUoA1QU4MYo.pdf"
-    
-    const response = await fetch(pdfUrl)
-    
+    const pdfUrl = new URL(
+      "/cv/Himanshu_Parashar_ATS_Resume_Oct_2026.pdf",
+      process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "https://himanshu-profile-devops.vercel.app",
+    )
+
+    const response = await fetch(pdfUrl, { cache: "no-store" })
+
     if (!response.ok) {
       return new Response("PDF not found", { status: 404 })
     }
-    
+
     const buffer = await response.arrayBuffer()
-    
+
     return new Response(buffer, {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": 'attachment; filename="Himanshu_Parashar_Resume.pdf"',
+        "Content-Disposition": 'attachment; filename="Himanshu_Parashar_ATS_Resume_Oct_2026.pdf"',
         "Cache-Control": "no-cache, no-store, must-revalidate",
       },
     })
